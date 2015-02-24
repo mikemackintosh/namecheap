@@ -3,7 +3,9 @@ module Namecheap
     # Returns a list of domains for the particular user.
     # @see http://developer.namecheap.com/docs/doku.php?id=api-reference:domains:getlist
     def get_list(options = {})
-      get 'domains.getList', options
+      result = get 'domains.getList', options
+      hash = result.parsed_response['ApiResponse']['CommandResponse']['DomainGetListResult'] || {}
+      hash
     end
 
     # Gets contact information for the requested domain.
